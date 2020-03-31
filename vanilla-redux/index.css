@@ -1,0 +1,9 @@
+.toggle {
+  border: 2px solid black;
+  width: 64px;
+  height: 64px;
+}
+
+.toggle.active {
+  background: yellow;
+}
