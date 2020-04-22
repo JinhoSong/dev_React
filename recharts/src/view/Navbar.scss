@@ -1,0 +1,93 @@
+
+body {
+	font-family: sans-serif;
+	margin: 0;
+	background-color: #000;
+}
+nav {
+	overflow: hidden; /* box-shadow가 넘치지 않기 위해 */
+	text-align: center;
+}
+nav a {
+	position: relative; /* 알맞게 box-shadow를 정렬하기 위해 */
+	display: inline-block;
+	margin: 1rem;
+	transition: color .4s;
+	color: #fff;
+}
+nav div {
+	margin-top: -1px; /* 1px border-bottom을 box-shadow랑 겹치게 */
+	border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+/* opacity 효과를 주기위한 사전 설정 */
+nav a::before {
+	position: absolute;
+	bottom: -5rem; /* nav a::before {height} + nav a {margin} */
+	left: 50%;
+	display: block;
+	width: 4rem;
+	height: 4rem;
+	content: '';
+	transition: opacity .4s;
+	transform: translateX(-50%);
+	opacity: 0;
+	box-shadow: 0 0 4rem 1px #fff;
+}
+nav a::after {
+	position: absolute;
+	bottom: -5rem; /* nav a::before {height} + nav a {margin} */
+	left: 50%;
+	display: block;
+	width: 4rem;
+	height: 4rem;
+	content: '';
+	transition: opacity .4s;
+	transform: translateX(-50%);
+	opacity: 0;
+	box-shadow: 0 1rem 1rem .75rem peru;
+}
+
+/* active 되면 opacity가 1로 변경 */
+nav a.active::before {
+	position: absolute;
+	bottom: -5rem; /* nav a::before {height} + nav a {margin} */
+	left: 50%;
+	display: block;
+	width: 4rem;
+	height: 4rem;
+	content: '';
+	transform: translateX(-50%);
+	opacity: 1;
+	box-shadow: 0 0 4rem 1px #fff;
+}
+nav a.active::after {
+	position: absolute;
+	bottom: -5rem; /* nav a::before {height} + nav a {margin} */
+	left: 50%;
+	display: block;
+	width: 4rem;
+	height: 4rem;
+	content: '';
+	transform: translateX(-50%);
+	opacity: 1;
+	box-shadow: 0 1rem 1rem .75rem peru;
+}
+nav a:not(.active):hover {
+	color: peachpuff;
+}
+.title {
+	font-weight: 700;
+	margin-right: 4rem;
+}
+.background {
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	opacity: .4;
+	background: url(https://source.unsplash.com/random) no-repeat 50% 50%;
+	background-size: cover;
+}

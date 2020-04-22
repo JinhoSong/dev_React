@@ -5,7 +5,7 @@ import TodoList from './components/TodoList';
 
 function createBulkTodos() {
   const array = [];
-  for (let i = 1; i <= 2500; i++) {
+  for (let i = 1; i <= 2; i++) {
     array.push({
       id: i,
       //text: '할 일 ${ i }', -> ` ` 이거로 묶어야 된다 이유는 뭐야 스.바
@@ -23,18 +23,18 @@ const App = () => {
   // ref 를 사용하여 변수 담기
   const nextId = useRef(2501);
 
-  const onInsert = useCallback(text => {
+  const onInsert = useCallback((text) => {
     const todo = {
       id: nextId.current,
       text,
       checked: false,
     };
-    setTodos(todos => todos.concat(todo));
+    setTodos((todos) => todos.concat(todo));
     nextId.current += 1; // 1씩 더하기
   }, []);
 
-  const onRemove = useCallback(id => {
-    setTodos(todos => todos.filter(todo => todo.id !== id));
+  const onRemove = useCallback((id) => {
+    setTodos((todos) => todos.filter((todo) => todo.id !== id));
   }, []);
   //아래 코드 좀 이해해야 한다.
   /*
@@ -44,9 +44,9 @@ const App = () => {
   조건 1 : 입력한 id값과 id가 같으면 새로 객체를 생성해준다
   조건 2 : 다르면 변화없이 그대로 반환한다 
   */
-  const onToggle = useCallback(id => {
-    setTodos(todos =>
-      todos.map(todo =>
+  const onToggle = useCallback((id) => {
+    setTodos((todos) =>
+      todos.map((todo) =>
         todo.id === id ? { ...todo, checked: !todo.checked } : todo,
       ),
     );
