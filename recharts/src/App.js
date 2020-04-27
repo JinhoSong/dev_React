@@ -10,10 +10,11 @@ import Navbar from "./view/Navbar";
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <Image />
+    <div id="container">
+
+
       <Test />
+
     </div>
   );
 }

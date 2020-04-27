@@ -1,10 +1,13 @@
 import React from "react";
+import { Route } from "react-router-dom";
 
-import Main from "views/Main.js";
+import Detail from "components/Detail/DetailPage"
+
 function App() {
   return (
     <div>
-      <Main />
+
+      <Route path="/:category?" component={Detail} />;
     </div>
   );
 }

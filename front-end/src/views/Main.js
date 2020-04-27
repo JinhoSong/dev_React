@@ -15,9 +15,9 @@ import Parallax from "components/Parallax/Parallax.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 
 import styles from "assets/jss/material-kit-react/views/components.js";
-
+import DetailPage from "../components/Detail/DetailPage"
 const useStyles = makeStyles(styles);
-
+import { Grid } from "@material-ui/core";
 export default function Components(props) {
   const classes = useStyles();
   const { ...rest } = props;
@@ -55,11 +55,7 @@ export default function Components(props) {
             <div className={classes.title}>
               <p>Title</p>
             </div>
-            <p>ddddddddddddddddddddd</p>
-            <p>ddddddddddddddddddddd</p>
-            <p>ddddddddddddddddddddd</p>
-            <p>ddddddddddddddddddddd</p>
-            <p>ddddddddddddddddddddd</p>
+            <DetailPage />
           </div>
         </div>
       </div>

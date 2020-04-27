@@ -3,9 +3,10 @@ import "./App.css";
 import Counter from "./component/Counter";
 import PhoneForm from "./component/PhoneForm";
 import PhoneInfoList from "./component/PhoneInfoList";
+import Categories from "./component/Categories";
 
 class App extends Component {
-  id = 2;
+  id = 6;
   state = {
     information: [
       {
@@ -18,8 +19,30 @@ class App extends Component {
         name: "홍길동",
         phone: "010-0000-0001",
       },
+      {
+        id: 2,
+        name: "홍길동",
+        phone: "010-0000-0001",
+      },
+      {
+        id: 3,
+        name: "홍길동",
+        phone: "010-0000-0001",
+      },
+      {
+        id: 4,
+        name: "홍길동",
+        phone: "010-0000-0001",
+      },
+      {
+        id: 5,
+        name: "홍길동",
+        phone: "010-0000-0001",
+      },
     ],
+
   };
+
   handleCreate = (data) => {
     const { information } = this.state;
     this.setState({
@@ -29,8 +52,9 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Categories />
         <PhoneForm onCreate={this.handleCreate} />
-        <PhoneInfoList data={this.state.information} />
+        <PhoneInfoList data={this.state.information} test={0} />
       </div>
     );
   }

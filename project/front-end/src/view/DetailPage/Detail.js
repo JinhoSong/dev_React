@@ -17,10 +17,9 @@ import ProductList from "dbComponent/ProductList";
 // sections for this page
 import styles from "assets/jss/material-kit-react/views/components.js";
 
-import Example from "view/DetailPage/Sections/Example";
-import ChartContent from "view/DetailPage/Sections/ChartContent";
 import PieChart from "view/DetailPage/Sections/PieChart";
 import Content from "components/Card/Content";
+import Categories from "./Sections/Categories";
 
 const useStyles = makeStyles(styles);
 
@@ -61,8 +60,9 @@ export default function Components(props) {
         <div className={classes.sections}>
           <div className={classes.container}>
             <div className={classes.title}>
-              <p color="white">Title</p>
-            </div>
+
+
+              <Categories /></div>
             <ProductList />
             <PieChart />
             <Content />

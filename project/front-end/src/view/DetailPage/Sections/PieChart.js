@@ -82,7 +82,7 @@ const renderActiveShape = (props) => {
   );
 };
 class Example extends PureComponent {
-  static jsfiddleUrl = "https://jsfiddle.net/alidingling/3Leoa7f4/";
+
 
   state = {
     activeIndex: "",
