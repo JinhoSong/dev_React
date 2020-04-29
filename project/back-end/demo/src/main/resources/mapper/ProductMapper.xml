@@ -20,6 +20,13 @@
             where id= #{id}
         </select>
 
+        <!--이걸로 테스트 할겁니다
+        <select id="fetchProductByTitle" resultType="com.example.demo.vo.ProductVO" parameterType="String">
+            select * from product
+            where title= #{title}
+        </select>
+         -->
+
         <delete id="deleteProduct" parameterType="String">
             delete from product
             where id=#{id}

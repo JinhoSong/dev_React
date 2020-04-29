@@ -18,4 +18,7 @@ public interface ProductMapper {
     void insertProduct(ProductVO product);
 
     void deleteProduct(String id);
+
+    // void fetchProductByTitle(String title);
+    // title로 찾을거니까 title을 넘김
 }

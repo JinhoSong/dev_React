@@ -6,7 +6,7 @@ import productList from "./constants";
 
 const Content = () => {
   const getProductList = (object) => {
-    const { title, price, description, avatarSrc, imgSrc } = object;
+    //const { title, price, description, avatarSrc, imgSrc } = object;
     return (
       <Grid item xs={12} sm={4}>
         <ProductCard {...object} />

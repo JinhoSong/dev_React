@@ -50,15 +50,11 @@ export default function Components(props) {
 
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div className={classes.sections}>
-                    <div className={classes.container}>
-                        <div className={classes.title}>
-
+                    <div className={classes.container} >
+                        <div >
+                            <CategoryContainer />
+                            <ProductListContainer />
                         </div>
-
-                        <CategoryContainer />
-
-                        <ProductListContainer />
-
                     </div>
                 </div>
                 <Footer />

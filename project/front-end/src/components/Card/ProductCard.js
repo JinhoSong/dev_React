@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import Button from "@material-ui/core/Button";
 import SmartphoneIcon from "@material-ui/icons/Smartphone";
-
+import { Link } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -62,22 +62,28 @@ const ProductCard = (props) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button
-          variant="contained"
-          size="medium"
-          color="primary"
-          className={classes.margin}
-        >
-          Detail
+        <Link to="/detail">
+          <Button
+            variant="contained"
+            size="medium"
+            color="primary"
+            className={classes.margin}
+
+
+          >
+            Detail
+          </Button>
+        </Link>
+        <Link to="www.naver.com">
+          <Button
+            variant="contained"
+            size="medium"
+            color="primary"
+            className={classes.margin}
+          >
+            BUY NOW
         </Button>
-        <Button
-          variant="contained"
-          size="medium"
-          color="primary"
-          className={classes.margin}
-        >
-          BUY NOW
-        </Button>
+        </Link>
       </CardActions>
     </Card>
   );

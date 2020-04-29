@@ -31,6 +31,10 @@ const conatinerFluid = {
   marginLeft: "auto",
   width: "100%"
 };
+const test = {
+  ...conatinerFluid,
+  background: "black"
+};
 const container = {
   ...conatinerFluid,
   "@media (min-width: 576px)": {
@@ -213,5 +217,6 @@ export {
   title,
   cardTitle,
   cardLink,
-  cardSubtitle
+  cardSubtitle,
+  test
 };

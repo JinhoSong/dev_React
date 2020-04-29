@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ApiService from "../ApiService";
+import { browserHistory } from 'history';
 import ProductCard from "components/Card/ProductCard"
 import Content from "components/Card/Content"
 class ProductList extends Component {
@@ -20,10 +21,12 @@ class ProductList extends Component {
 
 
   reloadProductList = () => {
+
     ApiService.fetchProduct()
       .then((res) => {
         this.setState({
           product: res.data,
+
         });
       })
       .catch((err) => {
@@ -91,6 +94,7 @@ class ProductList extends Component {
             ))}
           </tbody>
         </table>
+
       </div>
     );
   }

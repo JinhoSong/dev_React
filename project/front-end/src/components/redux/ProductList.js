@@ -17,16 +17,26 @@ const ProductList = ({ category, list }) => {
     const cat = ({
         category: category,
     })
-    console.log(list);
+    //console.log(">>>." + JSON.stringify(list));
     //container에서 넘어온 객체를 표현해주는 곳
-
+    function handleValueChange(e) {
+        let nextState = {};
+        nextState[e.target.name] = e.target.value;
+        this.setState(nextState);
+    }
     return (
         <div>
-            <h1>카테고리 : {category}</h1>
+            <p>ProductList from {category}</p>
             <Grid container spacing={4}>
                 {list.map((products) => getProductList(products))}
             </Grid>
         </div>
+        // <div>
+        //     <h1>카테고리 : {category}</h1>
+        //     <Grid container spacing={4}>
+        //         {list.map((products) => getProductList(products))}
+        //     </Grid>
+        // </div>
     );
 };
 

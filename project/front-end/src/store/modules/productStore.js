@@ -74,8 +74,13 @@ export default function ProductList(state = initialState, action) {
             return {
                 ...state,
                 category: action.category,
-                // productList: action.productList,
+                //productList: action.productList,
             };
+        case CHANGE_PRODUCTLIST:
+            return {
+                ...state,
+                productList: action.productList,
+            }
         default:
             return state;
     }
