@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 // core components
-
+import { Grid } from "@material-ui/core";
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
 import GridContainer from "components/Grid/GridContainer.js";
@@ -18,8 +18,13 @@ import ProductList from "dbComponent/ProductList";
 import styles from "assets/jss/material-kit-react/views/components.js";
 
 import PieChart from "view/DetailPage/Sections/PieChart";
+import RadarChart from "view/DetailPage/Sections/RadarChart";
 import Content from "components/Card/Content";
-import Categories from "./Sections/Categories";
+import Chart from "./Sections/Chart";
+import ReviewList from "../../components/Review/ReivewList";
+import SentimentalList from "../../components/Review/SentimentalList";
+import ProductListContainer from "container/ProductListContainer";
+import CategoryContainer from "container/CategoryContainer";
 
 const useStyles = makeStyles(styles);
 
@@ -30,7 +35,7 @@ export default function Components(props) {
   return (
     <div>
       <Header
-        brand="Main Page Design"
+        brand="Detail Page"
         rightLinks={<HeaderLinks />}
         fixed
         color="transparent"
@@ -55,19 +60,32 @@ export default function Components(props) {
           </GridContainer>
         </div>
       </Parallax>
-
+      <style>{'body { background-color: #f5f5f5; }'}</style>
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <div className={classes.sections}>
-          <div className={classes.container}>
-            <div className={classes.title}>
+        <body>
+          <div className={classes.sections}>
+            <div className={classes.container}>
+              <div className={classes.title}>
+              </div>
+              <Grid container spacing={4}>
+                <Grid item xs={12} sm={4}>
+                  <RadarChart />
+                </Grid>
+                <Grid item xs={12} sm={8}>
+                  <SentimentalList />
+                </Grid>
 
-
-              <Categories /></div>
-            <ProductList />
-            <PieChart />
-            <Content />
+                <Grid item xs={12} sm={4}>
+                  <PieChart />
+                </Grid>
+                <Grid item xs={12} sm={8}>
+                  <ReviewList />
+                </Grid>
+              </Grid>
+              <CategoryContainer />
+            </div>
           </div>
-        </div>
+        </body>
         <Footer />
       </div>
     </div>

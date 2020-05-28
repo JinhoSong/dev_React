@@ -4,6 +4,7 @@ import categories from './categories';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import productStore from 'store/modules/productStore';
 
 //카테고리 리스트를 받아와서 출력한다
 //onclick된거로 값이 바뀐다.
@@ -30,23 +31,25 @@ const CategoriesBlock = ({ selected, onSelect, categories }) => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  const { CurrentCategory } = props;
   return (
     <>
       <Paper className={classes.root}>
         <Tabs
-          value={value}
+          value={props.CurrentCategory}
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
         >
           {categories.map(category => (
-            <Tab label={category}
+            <Tab
+              label={category}
               category={category}
               activeClassName="active"
-              active={selected === category}
+              active={props.CurrentCategory === category}
               onClick={() => onSelect(category)}
             />
+
           ))}
         </Tabs>
       </Paper>
@@ -59,6 +62,7 @@ const CategoriesBlock = ({ selected, onSelect, categories }) => {
 
 
 const Category = ({ selected, onSelect }) => {
+
   return (
     <>
       <br></br><br></br>
@@ -67,5 +71,18 @@ const Category = ({ selected, onSelect }) => {
     </>
   )
 }
+const mapStateToProps = ({ productStore }) => ({
+  CurrentCategory: productStore.category,
 
-export default Category;
+
+});
+
+//props로 넣어줄 액션 생성함수
+const mapDispatchToProps = dispatch => ({
+
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Category);

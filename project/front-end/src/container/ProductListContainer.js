@@ -1,23 +1,30 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component, useState, useEffect } from 'react';
+
 import ProductList from "components/redux/ProductList";
-import { changeProductList } from '../store/modules/productStore';
+import PaginationProductList from 'components/Pagination/PaginationProductList'
+import { connect } from 'react-redux';
 import productStore from 'store/modules/productStore';
-//import ProductList_Category from 'componets/redux/ProductList_Category';
-import test from 'components/redux/test';
-//C:\dev_React\project\front-end\src\components\redux\test.js
+import { changeProductList, changeCurrentProduct } from '../store/modules/productStore';
+import ApiService from '../ApiService';
 class ProductListContainer extends Component { //3
 
+
+    handleClick = name => {
+        changeCurrentProduct(name);
+    }
+
+
     render() {
+
         const { category, list } = this.props;
         const query = ("ProductList_" + category);
-        //const { changeProductList } = this.props;
-        //changeProductList(test.productList);
-        //->강제로 넣으면 바뀌긴한다.
-        //여기선 변화를 인지한다. 
+
+
         return (
             < >
-                <ProductList category={category} list={list} />
+                <PaginationProductList />
+                {/* <ProductList category={category} list={list} click={this.handleClick} /> */}
+
             </>
 
         );
@@ -26,13 +33,14 @@ class ProductListContainer extends Component { //3
 const mapStateToProps = ({ productStore }) => ({  //2
     category: productStore.category,
     list: productStore.productList,
-
+    CurrentProduct: productStore.CurrentProduct,
 });
 //import store name이 맞는거다
 
 //props로 넣어줄 액션 생성함수
 const mapDispatchToProps = dispatch => ({
     changeProductList: list => dispatch(changeProductList(list)),
+    changeCurrentProduct: CurrentProduct => dispatch(changeCurrentProduct(CurrentProduct)),
 });
 
 export default connect( // 스토어와 연결

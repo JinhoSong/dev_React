@@ -12,7 +12,6 @@ import styles from "assets/jss/material-kit-react/views/components.js";
 import ProductListContainer from "container/ProductListContainer";
 import CategoryContainer from "container/CategoryContainer";
 
-
 const useStyles = makeStyles(styles);
 
 export default function Components(props) {
@@ -22,7 +21,7 @@ export default function Components(props) {
     return (
         <div>
             <Header
-                brand="Main Page Design"
+                brand="List Page"
                 rightLinks={<HeaderLinks />}
                 fixed
                 color="transparent"
@@ -48,15 +47,18 @@ export default function Components(props) {
                 </div>
             </Parallax>
 
-            <div className={classNames(classes.main, classes.mainRaised)}>
-                <div className={classes.sections}>
-                    <div className={classes.container} >
-                        <div >
-                            <CategoryContainer />
-                            <ProductListContainer />
+
+            <div className={classNames(classes.main, classes.mainRaised)} >
+                <body>
+                    <div className={classes.sections}>
+                        <div className={classes.container} >
+                            <div >
+                                <CategoryContainer />
+                            </div>
                         </div>
+
                     </div>
-                </div>
+                </body>
                 <Footer />
             </div>
         </div>

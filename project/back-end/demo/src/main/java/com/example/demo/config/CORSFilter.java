@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.annotation.Configuration;
 
+//여긴 안 건드려도 되는 부분 
 @Configuration
 public class CORSFilter implements Filter {
 

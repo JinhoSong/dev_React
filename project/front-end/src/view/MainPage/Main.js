@@ -13,14 +13,10 @@ import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Parallax from "components/Parallax/Parallax.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
-import ProductList from "dbComponent/ProductList";
 // sections for this page
 import styles from "assets/jss/material-kit-react/views/components.js";
-
-import Example from "view/DetailPage/Sections/Example";
-import ChartContent from "view/DetailPage/Sections/ChartContent";
 import PieChart from "view/DetailPage/Sections/PieChart";
-import Content from "components/Card/Content";
+import DBTest from 'dbComponent/DBTest';
 
 
 const useStyles = makeStyles(styles);
@@ -62,21 +58,17 @@ export default function Components(props) {
                 <div className={classes.sections}>
                     <div className={classes.container}>
                         <Grid container spacing={4}>
-                            <Grid item xs={12} sm={2}>
-                                <a>1</a>
+                            <Grid item xs={12} sm={4}>
+                                <DBTest />
                             </Grid>
-                            <Grid item xs={12} sm={8}>
-                                <PieChart />
+                            <Grid item xs={12} sm={4}>
+                                <a>2</a>
                             </Grid>
-                            <Grid item xs={12} sm={2}>
+
+                            <Grid item xs={12} sm={4}>
                                 <a>3</a>
                             </Grid>
                         </Grid>
-
-                        <div className={classes.title}>
-                            <h1> 차트는 이런걸 나타냅니다.</h1>
-                        </div>
-
 
                     </div>
                 </div>

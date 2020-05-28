@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import ApiService from "../ApiService";
 import { browserHistory } from 'history';
-import ProductCard from "components/Card/ProductCard"
-import Content from "components/Card/Content"
+
 class ProductList extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +17,7 @@ class ProductList extends Component {
     this.reloadProductList();
 
   }
-
+  //생성되자마자 -> 한번만 
 
   reloadProductList = () => {
 
@@ -32,6 +31,8 @@ class ProductList extends Component {
       .catch((err) => {
         console.log("reload error", err);
       });
+
+
   };
 
   deleteProduct = (id) => {

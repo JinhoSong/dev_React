@@ -1,45 +1,129 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Category from 'components/redux/Category';
-import ApiService from "ApiService";
+
+
 import { changeCategory } from '../store/modules/productStore';
 import { changeProductList } from '../store/modules/productStore';
-import categories from 'components/redux/categories';
+import { changeCategoryList } from '../store/modules/productStore';
+
 import ProductList_Category from 'components/redux/ProductList_Category';
+import CustomTabs from "components/CustomTabs/CustomTabs.js";
+import ApiService from "ApiService";
+import axios from 'axios';
+
 class CategoryContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            categoryList: [],
+            productList: [],
+
+        };
+    }
+    componentWillMount() {
+        this.reloadCategoryList();
+        this.reloadProductList();
+    }
+    //생성되자마자 -> 한번만 
+    reloadCategoryList = () => {
+        ApiService.fetchCategory()
+            .then((res) => {
+                this.setState({
+                    categoryList: res.data,
+                });
+                const { changeCategoryList } = this.props;
+                changeCategoryList(this.state.categoryList);
+                console.log("실행순서 확인");
+                console.log("categoryList", this.props.categoryList);
+
+            })
+            .catch((err) => {
+                console.log("reload error", err);
+            });
+    };
+    //생성되자마자 -> 한번만 
+    reloadProductList = () => {
+        ApiService.fetchProductList()
+            .then((res) => {
+                this.setState({
+                    productList: res.data,
+                });
+                const { changeProductList } = this.props;
+                changeProductList(this.state.productList);
+                console.log("여긴언제");
+            })
+            .catch((err) => {
+                console.log("reload error", err);
+            });
+    };
+
+
+    reloadProductListById = (cat_id) => {
+        ApiService.fetchProductListById(cat_id)
+            .then((res) => {
+                this.setState({
+                    productList: res.data,
+                });
+                const { changeProductList } = this.props;
+                changeProductList(this.state.productList);
+            })
+            .catch((err) => {
+                console.log("reload error", err);
+            });
+    };
+
+
+
     handleSelect = category => {
         const { changeCategory } = this.props;
         changeCategory(category);
-        const { changeProductList } = this.props;
-        const query = null;
-        const getProductList_Category = () => {
 
+        //바꾸는 부분 
+        const { changeProductList } = this.props;
+        console.log("changeCategory -> ! " + category);
+        this.state = {
+            product: []
+        };
+        const getProductList_Category = () => {
+            // const cat_id;
             switch (category) {
                 case 'all':
-                    changeProductList(ProductList_Category.productList_All);
+                    this.reloadProductList();
                     break;
                 case 'notebook':
-                    changeProductList(ProductList_Category.productList_Notebook);
+                    // cat_id = 50000151 노트북
+                    // ApiService.fetchProductListById(cat_id);
+                    this.reloadProductListById(50000151);
                     break;
+                //cat_id 50000151
                 case 'mouse':
-                    changeProductList(ProductList_Category.productList_Mouse);
+                    //cat_id = 50001203 마우스 
+                    //changeProductList(ProductList_Category.productList_Mouse);
+                    this.reloadProductListById(50001203);
                     break;
                 case 'skin':
-                    changeProductList(ProductList_Category.productList_Skin);
+                    //cat_id = 50000437 스킨
+                    this.reloadProductListById(50000437);
                     break;
                 case 'lotions':
-                    changeProductList(ProductList_Category.productList_Lotions);
-                    console.log("test ->>>", ApiService.fetchProduct());
+                    //cat_id = 50000438 로션
+                    this.reloadProductListById(50000438);
                     break;
             }
         }
         getProductList_Category();
     };
-
     render() {
         const { category } = this.props;
+        const { categoryList } = this.props;
         // console.log(">>>>>." + category)
-        return <Category onSelect={this.handleSelect} selected={category} />;
+        return (<>
+            <br></br><br></br>
+
+            <CustomTabs
+                onSelect={this.handleSelect} selected={category} categoryList={this.state.categoryList}
+            />
+        </>);
 
     }
 
@@ -48,13 +132,14 @@ class CategoryContainer extends Component {
 const mapStateToProps = ({ productStore }) => ({
     category: productStore.category,
     list: productStore.productList,
-
+    CategoryList: productStore.CategoryList,
 });
 
 //props로 넣어줄 액션 생성함수
 const mapDispatchToProps = dispatch => ({
     changeCategory: category => dispatch(changeCategory(category)),
     changeProductList: list => dispatch(changeProductList(list)),
+    changeCategoryList: CategoryList => dispatch(changeCategoryList(CategoryList)),
 });
 
 export default connect(
