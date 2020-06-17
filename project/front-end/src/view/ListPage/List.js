@@ -31,16 +31,15 @@ export default function Components(props) {
                 }}
                 {...rest}
             />
-            <Parallax image={require("assets/img/night_view.jpg")}>
+            <Parallax image={require("assets/img/think2.jpg")}  >
                 <div className={classes.container}>
                     <GridContainer>
                         <GridItem>
                             <div className={classes.brand}>
-                                <h1 className={classes.title}>Write our Team Name</h1>
+                                <h1 className={classes.title}></h1>
                                 <h3 className={classes.subtitle}>
-                                    The only true happiness comes from squandering ourselves for a
-                                    purpose
-                </h3>
+
+                                </h3>
                             </div>
                         </GridItem>
                     </GridContainer>

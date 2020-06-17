@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import MaterialTable from 'material-table';
 import { forwardRef } from 'react';
-
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
@@ -20,7 +19,6 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import DialogReview from './dialogReview';
 import { connect } from 'react-redux';
 import productStore from 'store/modules/productStore';
-import { Hidden } from '@material-ui/core';
 import { Search_TextField } from 'store/modules/productStore';
 
 
@@ -50,9 +48,19 @@ const ReviewTable = props => {
 
     const titleString = props.CurrentKeyword;
 
-    let kewordReview = props.ReviewData;
-
-    let searchText = kewordReview.filter(kewordReview => kewordReview.review.indexOf(titleString) >= 0);
+    let keywordReview;
+    let searchText;
+    let gitar;
+    if (titleString == "기타") {
+        keywordReview = props.ReviewData;
+        gitar = props.reviewLabels.map((label => label.keyword)); //각 라벨이 전부 들어가있고 
+        gitar = gitar.filter((gitar => gitar.indexOf("기타"))); //기타 라벨을 제거 하고
+        searchText = keywordReview.filter(keywordReview => keywordReview.review.indexOf("기타") < 0);
+        console.log("기타일때 입니다", searchText);
+    } else {
+        keywordReview = props.ReviewData;
+        searchText = keywordReview.filter(keywordReview => keywordReview.review.indexOf(titleString) >= 0);
+    }
     console.log("asdasd", searchText);
     let viewString;
     if (titleString) {
@@ -81,6 +89,17 @@ const ReviewTable = props => {
                 data={searchText}
                 icons={tableIcons}
                 onSearchChange={(e) => test(e)}
+                options={{
+                    pageSize: 10,
+                    pageSizeOptions: [10, 20, 30, 40, 100],
+                    maxBodyHeight: 650,
+                    exportButton: true,
+                    exportAllData: true,
+                    headerStyle: {
+                        backgroundColor: '#01579b',
+                        color: '#FFF'
+                    }
+                }}
             />
 
         </>
@@ -95,7 +114,7 @@ const mapStateToProps = ({ productStore }) => ({  //2
     CurrentKeyword: productStore.CurrentKeyword,
     Currentnv_mid: productStore.Currentnv_mid,
     SearchTextField: productStore.SearchTextField,
-
+    reviewLabels: productStore.reviewLabels,
 });
 
 const mapDispatchToProps = dispatch => {

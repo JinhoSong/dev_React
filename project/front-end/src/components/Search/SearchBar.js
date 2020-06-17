@@ -19,7 +19,8 @@ export const SearchBar = (props) => {
     return (
         <div>
             <form className={classes.root} noValidate autoComplete="off">
-                <TextField id="standard-secondary" label="검색" color="secondary" value={keyword} onChange={(e) => dispatch(search_keyword(e.target.value))} />
+
+                <TextField id="standard-secondary" label="상품 검색" color="secondary" value={keyword} onChange={(e) => dispatch(search_keyword(e.target.value))} />
             </form>
         </div>
         // <form>

@@ -7,7 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Highlighter from "react-highlight-words";
 import { connect } from 'react-redux';
-import productStore from 'store/modules/productStore';
+//import productStore from 'store/modules/productStore';
 function AlertDialog(props) {
     const [open, setOpen] = useState(false);
 
@@ -43,10 +43,9 @@ function AlertDialog(props) {
                 <DialogContent>
                     <DialogContentText>
                         <Highlighter
-                            searchWords={[props.CurrentKeyword, props.SearchTextField]}
+                            searchWords={[props.CurrentKeyword, props.SearchTextField, props.SearchSentiField]}
                             autoEscape={true}
                             textToHighlight={props.data}>
-
                         </Highlighter>
                     </DialogContentText>
                 </DialogContent>
@@ -63,6 +62,7 @@ function AlertDialog(props) {
 const mapStateToProps = ({ productStore }) => ({  //2
     CurrentKeyword: productStore.CurrentKeyword,
     SearchTextField: productStore.SearchTextField,
+    SearchSentiField: productStore.SearchSentiField,
 });
 //import store name이 맞는거다
 

@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -10,14 +10,12 @@ import {
   CardContent,
   IconButton,
   Divider,
-  Typography
 } from '@material-ui/core';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import { Grid } from "@material-ui/core";
 import { connect } from 'react-redux';
-import productStore from 'store/modules/productStore';
+//import productStore from 'store/modules/productStore';
 import { changeCurrentKeyword, changeCurrentProduct, changeReview, Change_ReviewNumber } from 'store/modules/productStore';
-import testData from './data';
 import ApiService from "ApiService";
 
 const useStyles = makeStyles(theme => ({
@@ -54,7 +52,6 @@ const PieChart = props => {
     Change_ReviewNumber("");
     // 처음실행부터 지금의 nv_mid값을 기준으로 리뷰 데이터를 select* from review where nv_mid=nv_mid로 가져온다
     //즉 여기서 리뷰의 갯수들을 체킹 가능하다.
-
   }, [props.Currentnv_mid]);
   //처음 실행될땐 이렇게 한다. 
   useEffect(() => {
@@ -62,14 +59,17 @@ const PieChart = props => {
   }, [props.ReviewData])
 
 
-  let titleString = props.CurrentProduct + "'s Keyword";
+  let titleString = props.CurrentProduct;
 
   function reloadData() {
-    const testString = props.CurrentKeyword;
+    //const testString = props.CurrentKeyword;
     let kewordReview = props.ReviewData;
     // let searchText = kewordReview.filter(kewordReview => kewordReview.review.indexOf(testString) >= 0);
-    let searchText = props.reviewLabels.map((label => kewordReview.filter(kewordReview => kewordReview.review.indexOf(label) >= 0)));
+    let test = props.reviewLabels.map((label => label.keyword));
+    //키워드만 받다가 다른것도 같이 받아서 일부러 이렇게 하는거 
+    let searchText = test.map((label => kewordReview.filter(kewordReview => kewordReview.review.indexOf(label) >= 0)));
     let count = searchText.map((q => q.length));
+    console.log("test", test);
     Change_ReviewNumber(count);
     // console.log("testString test", testString);
     // console.log("kewordReview test", kewordReview);
@@ -78,6 +78,8 @@ const PieChart = props => {
     // console.log("count test", count);
     // console.log("reviewNumber test", props.reviewNumber);
   };
+  // let label = props.reviewLabels.map(k => k.keyword);
+  // console.log("awfawefw", label);
   const data = {
     datasets: [
       {
@@ -88,7 +90,7 @@ const PieChart = props => {
         hoverBorderColor: theme.palette.white
       }
     ],
-    labels: props.reviewLabels // 보여주는 라벨들
+    labels: props.reviewLabels.map(k => k.keyword), // 보여주는 라벨들
   };
 
   const options = {
@@ -117,26 +119,29 @@ const PieChart = props => {
   const { changeCurrentKeyword, changeReview, Change_ReviewNumber } = props;
   const keywords = props.reviewLabels;
   // click 이벤트로 처리되는 label들을 지정해둔 곳  
-  const test = testData;
+
 
   const keywordClick = (keyword) => {
     changeCurrentKeyword(keyword);
-    switch (keyword) {
-      case "무게감":
-        changeCurrentKeyword("무게감");
-        break;
-      case "클릭감":
-        changeCurrentKeyword("클릭감");
-        break;
-      case "가격":
-        changeCurrentKeyword("가격");
-        break;
-      case "배송":
-        changeCurrentKeyword("배송");
-        // reloadReview(props.Currentnv_mid);
-        // console.log("prejaeorg", props.Currentnv_mid);
-        break;
-    }
+    // switch (keyword) {
+    //   case "무게감":
+    //     changeCurrentKeyword("무게감");
+    //     break;
+    //   case "클릭감":
+    //     changeCurrentKeyword("클릭감");
+    //     break;
+    //   case "가격":
+    //     changeCurrentKeyword("가격");
+    //     break;
+    //   case "배송":
+    //     changeCurrentKeyword("배송");
+    //     // reloadReview(props.Currentnv_mid);
+    //     // console.log("prejaeorg", props.Currentnv_mid);
+    //     break;
+    //   default:
+    //     changeCurrentKeyword("");
+    //     break;
+    // }
     console.log("changeCurrentKeyword", props.CurrentKeyword);
     //키워드가 바뀌는 곳에서 리뷰도 바뀌어야 된다.
   }
@@ -159,6 +164,7 @@ const PieChart = props => {
     <Card
       {...rest}
       className={clsx(classes.root, className)}
+      raised="true"
     >
       <CardHeader
         action={
@@ -175,16 +181,15 @@ const PieChart = props => {
           <Doughnut
             data={data}
             options={options}
-
           />
         </div>
 
         <div><p>Click Keyword </p></div>
         <div className={classes.stats}>
           <Grid container spacing={1}>
-            {keywords.map(keyword => (
+            {keywords.map(keywordLabels => (
               <Grid item xs={12} sm={6}>
-                <Button variant="outlined" fullWidth='true' color="primary" onClick={() => keywordClick(keyword)} >{keyword}</Button>
+                <Button variant="outlined" fullWidth='true' color="primary" onClick={() => keywordClick(keywordLabels.keyword)} >{keywordLabels.keyword}</Button>
               </Grid>
 
             ))}
@@ -215,6 +220,7 @@ const mapDispatchToProps = dispatch => {
     changeCurrentKeyword: CurrentKeyword => dispatch(changeCurrentKeyword(CurrentKeyword)),
     changeReview: ReviewData => dispatch(changeReview(ReviewData)),
     Change_ReviewNumber: reviewNumber => dispatch(Change_ReviewNumber(reviewNumber)),
+
   }
 };
 

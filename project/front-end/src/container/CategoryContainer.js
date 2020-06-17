@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-
 import { changeCategory } from '../store/modules/productStore';
 import { changeProductList } from '../store/modules/productStore';
 import { changeCategoryList } from '../store/modules/productStore';
-
-import ProductList_Category from 'components/redux/ProductList_Category';
 import CustomTabs from "components/CustomTabs/CustomTabs.js";
 import ApiService from "ApiService";
-import axios from 'axios';
+
 
 class CategoryContainer extends Component {
     constructor(props) {
@@ -79,11 +75,9 @@ class CategoryContainer extends Component {
         changeCategory(category);
 
         //바꾸는 부분 
-        const { changeProductList } = this.props;
+
         console.log("changeCategory -> ! " + category);
-        this.state = {
-            product: []
-        };
+
         const getProductList_Category = () => {
             // const cat_id;
             switch (category) {
@@ -109,13 +103,16 @@ class CategoryContainer extends Component {
                     //cat_id = 50000438 로션
                     this.reloadProductListById(50000438);
                     break;
+                default:
+                    console.log("default");
+                    break;
             }
         }
         getProductList_Category();
     };
     render() {
         const { category } = this.props;
-        const { categoryList } = this.props;
+
         // console.log(">>>>>." + category)
         return (<>
             <br></br><br></br>

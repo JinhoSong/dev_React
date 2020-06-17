@@ -7,6 +7,21 @@ import TextField from '@material-ui/core/TextField';
 export const SearchPrice = (props) => {
     let min = useSelector(state => state.Searchmin);
     let max = useSelector(state => state.Searchmax);
+    // , 를 제거하는 순서 
+
+    // function replaceCommas(n) {
+    //     console.log("wefawef", n);
+    //     if (n <= 999) {
+    //         return n;
+    //     } else {
+    //         return parseInt(n.splite(',').join(''));
+    //     }
+    // }
+    // function numberWithCommas(x) {
+    //     if (x) {
+    //         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    //     }
+    // }
     const dispatch = useDispatch();
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -21,7 +36,7 @@ export const SearchPrice = (props) => {
         <div>
             <form className={classes.root} noValidate autoComplete="off">
                 <TextField id="standard-secondary" label="최소 금액" color="secondary" value={min} onChange={(e) => dispatch(search_min(e.target.value))} />
-                <a>~</a>
+                <br></br>
                 <TextField id="standard-secondary" label="최대 금액" color="secondary" value={max} onChange={(e) => dispatch(search_max(e.target.value))} />
             </form>
         </div>

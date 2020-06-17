@@ -1,25 +1,14 @@
-import React, { Component, useState, useEffect } from 'react';
-
-import ProductList from "components/redux/ProductList";
+import React, { Component } from 'react';
 import PaginationProductList from 'components/Pagination/PaginationProductList'
 import { connect } from 'react-redux';
-import productStore from 'store/modules/productStore';
+//import productStore from 'store/modules/productStore';
 import { changeProductList, changeCurrentProduct } from '../store/modules/productStore';
-import ApiService from '../ApiService';
 class ProductListContainer extends Component { //3
-
-
     handleClick = name => {
         changeCurrentProduct(name);
     }
 
-
     render() {
-
-        const { category, list } = this.props;
-        const query = ("ProductList_" + category);
-
-
         return (
             < >
                 <PaginationProductList />

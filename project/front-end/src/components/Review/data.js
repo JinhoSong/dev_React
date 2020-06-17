@@ -1,4 +1,3 @@
-import uuid from 'uuid/v1';
 // 초기 상태 정의
 const kewordReview = {
   keyword1_data: [

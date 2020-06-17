@@ -8,5 +8,4 @@
             select * from product_review
             where nv_mid = #{nv_mid}
         </select>
-
     </mapper>

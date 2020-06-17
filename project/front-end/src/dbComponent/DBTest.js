@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ApiService from "../ApiService";
-import { browserHistory } from 'history';
+
 
 class DBTest extends Component {
     constructor(props) {

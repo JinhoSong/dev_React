@@ -6,7 +6,7 @@ import ProductList from "dbComponent/ProductList";
 import Detail from "view/DetailPage/Detail";
 import List from "view/ListPage/List";
 import Main from "view/MainPage/Main";
-import { ExpansionPanelDetails } from "@material-ui/core";
+
 
 const AppRouter = () => {
   return (

@@ -15,9 +15,8 @@ import Parallax from "components/Parallax/Parallax.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 // sections for this page
 import styles from "assets/jss/material-kit-react/views/components.js";
-import PieChart from "view/DetailPage/Sections/PieChart";
 import DBTest from 'dbComponent/DBTest';
-
+import testImage from 'assets/img/팜플렛캡처.jpg';
 
 const useStyles = makeStyles(styles);
 
@@ -43,11 +42,10 @@ export default function Components(props) {
                     <GridContainer>
                         <GridItem>
                             <div className={classes.brand}>
-                                <h1 className={classes.title}>Write our Team Name</h1>
+                                <h1 className={classes.title}>팀 : 공대감성</h1>
                                 <h3 className={classes.subtitle}>
-                                    The only true happiness comes from squandering ourselves for a
-                                    purpose
-                </h3>
+                                    감성 분석을 이용한 리뷰 분석
+                                </h3>
                             </div>
                         </GridItem>
                     </GridContainer>
@@ -57,17 +55,18 @@ export default function Components(props) {
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div className={classes.sections}>
                     <div className={classes.container}>
+
                         <Grid container spacing={4}>
-                            <Grid item xs={12} sm={4}>
-                                <DBTest />
+                            <Grid item xs={12} sm={2}>
+
                             </Grid>
-                            <Grid item xs={12} sm={4}>
-                                <a>2</a>
+                            <Grid item xs={12} sm={8}>
+                                <img src={testImage}></img>
+                            </Grid>
+                            <Grid item xs={12} sm={2}>
+
                             </Grid>
 
-                            <Grid item xs={12} sm={4}>
-                                <a>3</a>
-                            </Grid>
                         </Grid>
 
                     </div>

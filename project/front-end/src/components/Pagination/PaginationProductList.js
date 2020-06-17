@@ -1,18 +1,14 @@
-import React, { useState, useEffect, useSelector, useDispatch } from 'react';
+import React, { useState, useEffect } from 'react';
 import Posts from './Posts';
-
 import PaginationPage from './PaginationPage';
-import axios from 'axios';
 import { connect } from 'react-redux';
-import productStore from 'store/modules/productStore';
+//import productStore from 'store/modules/productStore';
 import { changeProductList, changeCurrentProduct, search_min, search_max } from 'store/modules/productStore';
-import ApiService from "ApiService";
 import SearchBar from 'components/Search/SearchBar';
 import { SearchPrice } from '../Search/SearchPrice';
 import { Grid } from "@material-ui/core";
 const PaginationProductList = (props) => {
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(12);
   const fetchPosts = () => {
@@ -39,7 +35,6 @@ const PaginationProductList = (props) => {
 
   // , 를 제거하는 순서 
   const replacePrice = searchText.map(searchText => ({ ...searchText, price: searchText.price.split(',').join('') }));
-
   let minPrice;
   let maxPrice;
 
@@ -88,10 +83,10 @@ const PaginationProductList = (props) => {
     <div className='container mt-5'>
       <h1 className='text-primary mb-3'></h1>
       <Grid container spacing={4}>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={8}>
           <SearchBar />
         </Grid>
-        <Grid item xs={12} sm={8}>
+        <Grid item xs={12} sm={4}>
           <SearchPrice />
         </Grid>
       </Grid>

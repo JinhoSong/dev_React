@@ -13,19 +13,17 @@ import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Parallax from "components/Parallax/Parallax.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
-import ProductList from "dbComponent/ProductList";
 // sections for this page
 import styles from "assets/jss/material-kit-react/views/components.js";
-
 import PieChart from "view/DetailPage/Sections/PieChart";
 import RadarChart from "view/DetailPage/Sections/RadarChart";
-import Content from "components/Card/Content";
-import Chart from "./Sections/Chart";
 import ReviewList from "../../components/Review/ReivewList";
 import SentimentalList from "../../components/Review/SentimentalList";
-import ProductListContainer from "container/ProductListContainer";
 import CategoryContainer from "container/CategoryContainer";
-
+import ReviewResult from "../../components/Review/ReviewResult";
+import CardReview from "../../components/Card/CardReview";
+import ScrollButton from "../../components/ScrollButton/ScrollButton";
+import "./Sections/Scroll.css";
 const useStyles = makeStyles(styles);
 
 export default function Components(props) {
@@ -45,34 +43,41 @@ export default function Components(props) {
         }}
         {...rest}
       />
-      <Parallax image={require("assets/img/night_view.jpg")}>
+
+      <Parallax image={require("assets/img/think2.jpg")}  >
         <div className={classes.container}>
           <GridContainer>
             <GridItem>
               <div className={classes.brand}>
-                <h1 className={classes.title}>Write our Team Name</h1>
+                <h1 className={classes.title}></h1>
                 <h3 className={classes.subtitle}>
-                  The only true happiness comes from squandering ourselves for a
-                  purpose
+
                 </h3>
               </div>
             </GridItem>
           </GridContainer>
         </div>
       </Parallax>
-      <style>{'body { background-color: #f5f5f5; }'}</style>
+
+
       <div className={classNames(classes.main, classes.mainRaised)}>
+
         <body>
+          <ScrollButton />
           <div className={classes.sections}>
             <div className={classes.container}>
               <div className={classes.title}>
               </div>
               <Grid container spacing={4}>
+
                 <Grid item xs={12} sm={4}>
                   <RadarChart />
                 </Grid>
                 <Grid item xs={12} sm={8}>
                   <SentimentalList />
+                </Grid>
+                <Grid item xs={12} sm={12}>
+                  <ReviewResult />
                 </Grid>
 
                 <Grid item xs={12} sm={4}>
@@ -85,6 +90,7 @@ export default function Components(props) {
               <CategoryContainer />
             </div>
           </div>
+
         </body>
         <Footer />
       </div>

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
-import productStore from 'store/modules/productStore';
+//import productStore from 'store/modules/productStore';
 
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Card,
-  CardActions,
   CardHeader,
   CardContent,
 
@@ -38,23 +37,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const statusColors = {
-  delivered: 'success',
-  pending: 'info',
-  refunded: 'danger'
-};
-
 const ReviewList = props => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
 
   const [reviews] = useState(mockData);
-  const selectKeyword = props.CurrentKeyword;
+  const selectKeyword = "";
   return (
     <Card
       {...rest}
       className={clsx(classes.root, className)}
+      raised="true"
     >
       <CardHeader
         color=""
